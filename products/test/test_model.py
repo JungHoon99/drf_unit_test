@@ -1,6 +1,6 @@
 from django.test import TestCase
 from products.models import Product
-
+from django.db import backends
 class ModelTestCase(TestCase):
     """ 이 클래스는 bucketlist 모델을 위한 test suite를 정의합니다."""
     def setUp(self):
