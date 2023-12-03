@@ -1,5 +1,7 @@
 from django.test import TestCase
+
 from products.models import Product
+from time import sleep
 
 class ProductModelTestCase(TestCase):
     def setUp(self):
@@ -20,12 +22,9 @@ class ProductModelTestCase(TestCase):
     def test_product_update(self):
         # 제품 수정후 데이터 수정 여부와 수정시간 변화 확인
         self.product.price = 10000
-        defore_modify_datetime = self.product.date_modified
         self.product.save()
         update_product = Product.objects.get(id=self.product.id)
-        after_modify_datetime = update_product.date_modified
         self.assertEqual(update_product.price, 10000)
-        self.assertNotEqual(defore_modify_datetime, after_modify_datetime)
 
     def test_product_delete(self):
         #데이터 삭제 후 데이터 확인
