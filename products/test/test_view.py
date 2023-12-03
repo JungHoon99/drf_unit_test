@@ -6,7 +6,6 @@ from django.urls import reverse
 from products.views import Product_listAPI
 
 
-
 class ProductListAPITestCase(APITestCase):
     def setUp(self):
         self.factory = APIRequestFactory()
