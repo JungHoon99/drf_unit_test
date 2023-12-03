@@ -19,9 +19,12 @@ class ModelTestCase(TestCase):
 
     def test_model_update_product(self):
         self.product.price = 10000
+        defore_modify_datetime = self.product.date_modified
         self.product.save()
         update_product = Product.objects.get(id=self.product.id)
+        after_modify_datetime = update_product.date_modified
         self.assertEqual(update_product.price, 10000)
+        self.assertNotEqual(defore_modify_datetime, after_modify_datetime)
 
     def test_model_delete_product(self):
         product_id = self.product.id
