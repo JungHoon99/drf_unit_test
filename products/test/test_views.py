@@ -1,4 +1,4 @@
-﻿from rest_framework.test import APITestCase, APIClient
+﻿from rest_framework.test import APITestCase
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from django.urls import reverse
 
@@ -27,7 +27,6 @@ class productDetailAPITestCase(APITestCase):
         self.product_name = "shirt"
         self.price = 5000
         self.product = Product.objects.create(name=self.product_name, price=self.price)
-        self.client = APIClient()
 
     def test_retrieve_view(self):
         # 제품을 가져오는 GET 요청 테스트
