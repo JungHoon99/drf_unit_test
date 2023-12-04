@@ -35,11 +35,6 @@ class MyUserSerializer(serializers.ModelSerializer):
             name=validated_data['name'],
             email=validated_data['email'],
             phone=validated_data['phone'],
-            comp_fax_num=validated_data['comp_fax_num'],
-            comp_zipcode=validated_data['comp_zipcode'],
-            position=validated_data['position'],
-            comp_loc=validated_data['comp_loc'],
-            reg_cert_photo=validated_data['reg_cert_photo'],
         )
         user.set_password(validated_data['password'])
         user.save()
