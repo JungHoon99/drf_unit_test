@@ -3,13 +3,32 @@ from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CON
 from django.urls import reverse
 
 from products.models import Product
-
+from accounts.test.factorys import UserFactory
 
 class ProductListAPITestCase(APITestCase):
     def setUp(self):
         self.url=reverse('product_list')
+        self.user = UserFactory()
+
+    def authenticate(self):
+        response = self.client.post(reverse('user_create'), {
+            'userid': "test12",
+            'password': "1q2w3e4r!",
+            'password2': "1q2w3e4r!",
+            'name': "junghun",
+            'email': "junghun999@mav.com",
+            'phone': "010-5230-5624",
+        })
+        print(response.data)
+        
+        response = self.client.post(reverse('user_login'), {
+            'userid': "test12",
+            'password': "1q2w3e4r!"
+        })
+        print(response.data)
 
     def test_list_view(self):
+        self.authenticate()
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, HTTP_200_OK)

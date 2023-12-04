@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 
 from accounts.serializers import MyUserSerializer, LoginSerializer
+from accounts.models import MyUser
 # Create your views here.
 
 class AccountCreateAPIView(generics.CreateAPIView):
@@ -15,6 +16,7 @@ class LoginAPIView(generics.GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
+        a = MyUser.objects.all()
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -41,6 +43,7 @@ class RefreshTokenAPIView( generics.GenericAPIView):
     serializer_class = TokenRefreshSerializer
 
     def post(self, request):
+        print(MyUser)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 

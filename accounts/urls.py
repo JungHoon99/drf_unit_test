@@ -6,8 +6,6 @@ from rest_framework_simplejwt.views import (
     TokenBlacklistView,
 )
 
-app_name = 'account'
-
 urlpatterns = [
     path('create/', AccountCreateAPIView.as_view(), name='user_create'),
     path('login/', LoginAPIView.as_view(), name='user_login'),

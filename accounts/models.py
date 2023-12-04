@@ -59,6 +59,7 @@ class MyUser(AbstractBaseUser):
 
     class Meta:
         verbose_name_plural = '사용자'
+        db_table = 'myuser'
     
     def has_perm(self, perm, obj=None):
         return True
