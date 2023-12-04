@@ -1,5 +1,5 @@
 ﻿from rest_framework.test import APITestCase, APIRequestFactory, APIClient
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from django.urls import reverse
 
 from products.models import Product
@@ -56,3 +56,12 @@ class productDetailAPITestCase(APITestCase):
 
         with self.assertRaises(Product.DoesNotExist):
             deleted_product = Product.objects.get(id=self.product.id)
+
+    def test_price_raise_view(self):
+        updated_data = {'name': '업데이트된 제품', 'price': -150}
+        response = self.client.put(f'/product/{self.product.id}/', updated_data, format='json')
+
+        print(response.data)
+
+        self.assertEqual(response.status_code, HTTP_400_BAD_REQUEST)
+        self.assertIn('price', response.data)
