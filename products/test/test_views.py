@@ -16,12 +16,9 @@ class ProductListAPITestCase(APITestCase):
         self.assertEqual(response.status_code, HTTP_200_OK)
 
     def test_product_create_view(self):
-        sample_post={'name': 'pants', 'price': 67000}
+        sample_post={'name': 'pants', 'price': 67000} 
 
-        response = self.client.post(
-            self.url, 
-            sample_post
-            )
+        response = self.client.post(self.url, sample_post)
 
         self.assertEqual(response.status_code, HTTP_201_CREATED)
 
