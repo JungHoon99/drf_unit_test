@@ -22,6 +22,13 @@ class ProductListAPITestCase(APITestCase):
         })
 
         print(response.data)
+        # 출력예시
+        # {
+        #     'userid': 'bridgetwalker505', 
+        #     'name': 'school', 
+        #     'email': 'nancysherman@example.net', 
+        #     'phone': '010-2679-2840'
+        # }
 
         response = self.client.post(reverse('user_login'), {
             'userid': user.userid,
@@ -29,6 +36,16 @@ class ProductListAPITestCase(APITestCase):
         })
 
         print(response.data)
+        # 출력예시
+        # {
+        #     'userid': 1, 
+        #     'username': 'school', 
+        #     'message': '로그인 성공', 
+        #     'token': {
+        #         'access': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxNzM3ODQwLCJpYXQiOjE3MDE2OTQ2NDAsImp0aSI6ImQzZDUwMDY4N2Q1NjRhM2M5MTU3M2ViZmIwMGI3ZTliIiwidXNlcl9pZCI6MX0.zgYmjgtPgguNKbHiYBsfX-BdNq1gkjiQGPDN2ispyyc', 
+        #         'refresh': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwMjEyNjY0MCwiaWF0IjoxNzAxNjk0NjQwLCJqdGkiOiJhNmE4MGRjMTZiMTY0MGZiYWFiYWY3MTFmMzY0YTk5NCIsInVzZXJfaWQiOjF9.rkjZQb5NIMLqGlpeRmH7jDdMgCT4UjgeGHr9SlxU_5I'
+        #     }
+        # }
 
     def test_list_view(self):
         self.authenticate()
