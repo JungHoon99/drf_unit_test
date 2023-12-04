@@ -8,23 +8,26 @@ from accounts.test.factorys import UserFactory
 class ProductListAPITestCase(APITestCase):
     def setUp(self):
         self.url=reverse('product_list')
-        self.user = UserFactory()
 
     def authenticate(self):
+        user = UserFactory.build()
+
         response = self.client.post(reverse('user_create'), {
-            'userid': "test12",
-            'password': "1q2w3e4r!",
-            'password2': "1q2w3e4r!",
-            'name': "junghun",
-            'email': "junghun999@mav.com",
-            'phone': "010-5230-5624",
+            'userid': user.userid,
+            'password': user.password,
+            'password2': user.password,
+            'name': user.name,
+            'email': user.email,
+            'phone': user.phone,
         })
+
         print(response.data)
-        
+
         response = self.client.post(reverse('user_login'), {
-            'userid': "test12",
-            'password': "1q2w3e4r!"
+            'userid': user.userid,
+            'password': user.password,
         })
+
         print(response.data)
 
     def test_list_view(self):
