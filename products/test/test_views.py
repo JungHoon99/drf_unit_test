@@ -36,14 +36,14 @@ class productDetailAPITestCase(APITestCase):
         self.product = Product.objects.create(name=self.product_name, price=self.price)
         self.client = APIClient()
 
-    def test_get_product(self):
+    def test_get(self):
         # 제품을 가져오는 GET 요청 테스트
         response = self.client.get(f'/product/{self.product.id}/')
 
         self.assertEqual(response.status_code, HTTP_200_OK)
         self.assertEqual(response.data['name'], self.product_name)
 
-    def test_update_product(self):
+    def test_update(self):
         # 제품을 업데이트하는 PUT 요청 테스트
         updated_data = {'name': '업데이트된 제품', 'price': 150}
         response = self.client.put(f'/product/{self.product.id}/', updated_data, format='json')
@@ -54,7 +54,7 @@ class productDetailAPITestCase(APITestCase):
         self.assertEqual(updated_product.name, '업데이트된 제품')
         self.assertEqual(updated_product.price, 150)
 
-    def test_delete_product(self):
+    def test_delete(self):
         # 제품을 삭제하는 DELETE 요청 테스트
         response = self.client.delete(f'/product/{self.product.id}/')
 
