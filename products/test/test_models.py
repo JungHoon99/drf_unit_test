@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 from products.models import Product
-from time import sleep
 
 class ProductModelTestCase(TestCase):
     def setUp(self):
